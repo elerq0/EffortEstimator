@@ -1,0 +1,54 @@
+.mat-button {
+  width: 180px;
+  font-size: 18px;
+  border-color: dimgray;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.call-panel {
+  position: absolute;
+  left: calc(50% - 90px);
+}
+
+.mute-button {
+  position: fixed;
+  top: calc(100% - 190px);
+}
+
+.dc-button {
+  position: fixed;
+  top: calc(100% - 140px);
+}
+
+.mute-icon {
+  position: fixed;
+  width: 100px;
+  top: calc(100% - 320px);
+  left: calc(50% - 50px);
+}
+
+.online-panel {
+  position: absolute;
+  background-color: rgba(128, 128, 128, 0.4);
+  top: calc(15% - 30px);
+  left: calc(100% - 250px);
+  height: calc(85% + 30px);
+  width: 250px;
+}
+
+.online-title {
+  position: fixed;
+  left: calc(100% - 165px);
+  font-size: 18px;
+  color: white;
+}
+
+.online-users {
+  position: fixed;
+  top: calc(15% + 5px);
+  left: calc(100% - 240px);
+}
+
+.online-user {
+  color: white;
+}

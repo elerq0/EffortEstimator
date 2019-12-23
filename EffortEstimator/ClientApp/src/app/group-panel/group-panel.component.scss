@@ -1,0 +1,152 @@
+
+.error {
+  position: absolute;
+  left: 50px;
+  color: red;
+}
+
+.mat-button {
+  width: 180px;
+  font-size: 18px;
+  border-color: dimgray;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.mat-menu-item {
+  width: 180px;
+  font-size: 18px;
+}
+
+.groups-list {
+  position: absolute;
+  top: 80px;
+  left: 50px;
+}
+
+.join-create-part {
+  position: fixed;
+  width: 320px;
+  height: 160px;
+  top: calc(50% - 50px);
+  left: calc(50% - 160px);
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.join-create-mat-form-field {
+  left: 20px;
+  width: 280px;
+}
+
+.join-create-button {
+  position: absolute;
+  top: 60px;
+  left: 80px;
+  width: 160px;
+}
+
+.join-create-error {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  color: red;
+}
+
+.join-create-output {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  color: white;
+}
+
+.group-part {
+  /*
+  width: 320px;
+  height: 160px;
+  top: calc(50% - 50px);
+  left: calc(50% - 160px);
+  background-color: rgba(128, 128, 128, 0.4);
+    */
+}
+
+.group-connect-button {
+  position: fixed;
+  top: 80px;
+  left: 250px;
+}
+
+.group-joining-part {
+  position: fixed;
+  top: 80px;
+  left: calc(100% - 330px);
+}
+
+.group-joining-output-field {
+  position: absolute;
+  background-color: rgba(128, 128, 128, 0.4);
+  width: 280px;
+  height: 40px;
+}
+
+.group-joining-output {
+  position: absolute;
+  font-size: 18px;
+  color: black;
+  top: 8px;
+  left: 15px;
+}
+
+.group-joining-button {
+  position: absolute;
+  width: 280px;
+  height: 40px;
+}
+
+.group-conference-button {
+  position: fixed;
+  top: 130px;
+  left: calc(100% - 330px);
+  width: 280px;
+  height: 40px;
+}
+
+.conferences-part {
+  position: absolute;
+  top: 240px;
+  left: 50px;
+  width: calc(100% - 100px);
+}
+
+.date-column {
+  width: 160px;
+}
+
+.topic-column {
+  width: 400px;
+}
+
+.desc-column {
+  width: calc(90% - 660px);
+}
+
+.button-column {
+  width: 40px;
+  font-size: 10px;
+  background-color: none;
+  left: calc(100% - 50px);
+}
+
+.mat-table {
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.15);
+}
+
+.mat-paginator {
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.test {
+  position: relative;
+  left: 40px;
+  top: 50%;
+}

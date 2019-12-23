@@ -1,0 +1,86 @@
+<div class="groups-list">
+  <button mat-button [matMenuTriggerFor]="GroupsList">
+    <span *ngIf="actualGroup.name == ''">Select group</span>
+    <span *ngIf="actualGroup.name != ''">{{actualGroup.name}}</span>
+  </button>
+  <mat-menu #GroupsList>
+    <button mat-menu-item (click)="chooseGroup(group)" *ngFor="let group of groups">
+      {{ group.name }}
+    </button>
+  </mat-menu>
+</div>
+
+<div class="join-create-part" *ngIf="actualGroup.role == 'api'">
+  <div *ngIf="actualGroup.name == 'New'">
+    <mat-form-field class="join-create-mat-form-field">
+      <input matInput [(ngModel)]="input" placeholder="Name of your group" />
+    </mat-form-field>
+    <button mat-button (click)="createNewGroup()" class="join-create-button">Create</button>
+  </div>
+
+  <div *ngIf="actualGroup.name == ''">
+    <mat-form-field class="join-create-mat-form-field">
+      <input matInput [(ngModel)]="input" placeholder="Paste your joining key" />
+    </mat-form-field>
+    <button mat-button (click)="joinGroup()" class="join-create-button">Join</button>
+  </div>
+
+  <mat-label class="join-create-output">
+    {{output}}
+  </mat-label>
+  <div *ngIf="msg != ''" class="join-create-error">
+    {{msg}}
+  </div>
+</div>
+
+<div class="group-part" *ngIf="actualGroup.role != 'api'">
+  <div *ngIf="actualGroup.role == 'Owner'" class="group-joining-part">
+    <div *ngIf="output == ''; else generated">
+      <button mat-button (click)="getJoiningKey()" class="group-joining-button">Generate joining key</button>
+    </div>
+
+    <ng-template #generated>
+      <div class="group-joining-output-field">
+        <mat-label class="group-joining-output">
+          {{output}}
+        </mat-label>
+      </div>
+    </ng-template>
+  </div>
+  <div *ngIf="actualGroup.role == 'Owner' || actualGroup.role == 'Admin'">
+    <button mat-button (click)="createConference()" class="group-conference-button">Plan new conference</button>
+  </div>
+
+  <button mat-button (click)="joinChannel()" class="group-connect-button">Connect</button>
+
+  <div class="conferences-part" *ngIf="conferences.length > 0">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef class="date-column"> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.startDate.replace('T', ' ').substr(0, element.startDate.length - 3)}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="topic">
+        <th mat-header-cell *matHeaderCellDef class="topic-column"> Topic </th>
+        <td mat-cell *matCellDef="let element"> {{element.topic}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef class="desc-column"> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="join" class="date-column">
+        <th mat-header-cell *matHeaderCellDef class="button-column"></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button *ngIf="getConferenceAccess(element.startDate)" (click)="joinConference(element.conferenceId)">Join</button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="headers"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="rows"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[8, 6]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

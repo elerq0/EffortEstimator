@@ -1,0 +1,38 @@
+<div class="register-box">
+  <mat-form-field>
+    <input matInput [(ngModel)]="email" placeholder="Email" />
+  </mat-form-field>
+  <p></p>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="password" name="password" placeholder="Password" [type]="hidePassword ? 'password' : 'text'" />
+    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <p></p>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="confPassword" name="confPassword" placeholder="Confirm Password" [type]="hideConfPassword ? 'password' : 'text'" />
+    <button mat-icon-button matSuffix (click)="hideConfPassword = !hideConfPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <div *ngIf="!MatchPassword()" [ngClass]="'error'">Password do not match!</div>
+  <p></p>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="name" placeholder="Name" />
+  </mat-form-field>
+  <p></p>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="surname" placeholder="Surname" />
+  </mat-form-field>
+  <p></p>
+
+  <button mat-button (click)="Register()">Register</button>
+  <p></p>
+  <div *ngIf="msg != ''" [ngClass]="'error'">{{msg}}</div>
+
+</div>

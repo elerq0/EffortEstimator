@@ -1,0 +1,26 @@
+<div [id]="localCallId"></div>
+<div *ngFor="let callId of remoteCalls" [id]="callId"></div>
+
+<div class="online-panel">
+  <span class="online-title">ONLINE</span>
+  <div class="online-users">
+    <div class="online-user" *ngFor="let user of users">
+      {{user}}
+    </div>
+  </div>
+</div>
+
+<div class="call-panel">
+
+  <img *ngIf="isMuted" class="mute-icon" src="assets/mic-mute-icon.jpg">
+
+  <button mat-button (click)="mute()" class="mute-button">Mute</button>
+
+  <button mat-button (click)="disconnect()" class="dc-button">Disconnect</button>
+</div>
+
+
+
+
+
+

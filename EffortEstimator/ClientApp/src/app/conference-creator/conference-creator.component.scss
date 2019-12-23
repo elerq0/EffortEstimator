@@ -1,0 +1,54 @@
+.conference-part {
+  position: absolute;
+  width: 700px;
+  height: 380px;
+  left: calc(50% - 350px);
+  top: 80px;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.topic-field {
+  position: absolute;
+  top: 5px;
+  left: 50px;
+  width: 600px;
+  font-size: 18px;
+}
+
+.description-field {
+  position: absolute;
+  top: 75px;
+  left: 50px;
+  width: 600px;
+  height: 100px;
+  background-color: rgba(128, 128, 128, 0.2);
+  border-color: rgba(128, 128, 128, 0);
+}
+
+.date-field {
+  position: absolute;
+  top: 200px;
+  width: 180px;
+  left: calc(50% + 120px);
+}
+
+.conference-cancel-button {
+  position: absolute;
+  top: 280px;
+  width: 140px;
+  left: calc(50% - 40px - 140px);
+}
+
+.conference-confirm-button {
+  position: absolute;
+  top: 280px;
+  width: 140px;
+  left: calc(50% + 40px);
+}
+
+.conference-error {
+  position: absolute;
+  top: 340px;
+  left: 50px;
+  color: red;
+}

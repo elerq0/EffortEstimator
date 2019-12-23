@@ -1,0 +1,12 @@
+<div [ngClass]="'nav-bar'">
+  <div *ngIf="service.isLoggedIn(); else loggedOut">
+    <button mat-button class="log-in-out" (click)="logout()">Log out</button>
+    <button mat-button class="groups" routerLink="/groups">Groups</button>
+    <button mat-button class="home" routerLink="/home">Home</button>
+  </div>
+
+    <ng-template #loggedOut>
+      <button mat-button class="log-in-out" routerLink="/">Log in</button>
+      <button mat-button class="register" routerLink="/register">Register</button>
+    </ng-template>
+</div>

@@ -1,0 +1,27 @@
+.error {
+  position: relative;
+  left: 50px;
+  color: red;
+}
+
+.mat-form-field {
+  left: 50px;
+  width: 250px;
+  
+}
+
+.mat-button {
+  left: 200px;
+  width: 80px;
+  font-size: 18px;
+  border-color: dimgray;
+}
+
+.login-box {
+  position: fixed;
+  top: calc(85% - 250px);
+  left: calc(95% - 350px);
+  width: 350px;
+  height: 250px;
+  background-color: rgba(128, 128, 128, 0.4);
+}

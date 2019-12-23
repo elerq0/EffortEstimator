@@ -1,0 +1,11 @@
+sobota, 30 listopada 2019 19:17:32 - MySQL-GetGroups: Could not find specified column in results: GMe_Role
+sobota, 30 listopada 2019 19:19:49 - MySQL-GetGroups: Could not find specified column in results: GMe_Role
+sobota, 30 listopada 2019 19:21:29 - MySQL-GetGroups: Could not find specified column in results: GMe_Role
+sobota, 14 grudnia 2019 19:43:06 - MySQL-CreateChannel: Incorrect integer value: '' for column 'ConId' at row 1
+niedziela, 15 grudnia 2019 17:11:15 - MySQL-GetChannelName email=[elerq0@gmail.com], groupName=[kka], conferenceId=[0]: Channel not found!
+niedziela, 15 grudnia 2019 17:11:18 - MySQL-GetChannelName email=[elerq0@gmail.com], groupName=[kka], conferenceId=[0]: Channel not found!
+niedziela, 15 grudnia 2019 17:11:30 - MySQL-GetChannelName email=[elerq0@gmail.com], groupName=[kka], conferenceId=[0]: Channel not found!
+poniedziałek, 16 grudnia 2019 04:56:56 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[t], description=[], startDate=[2019-12-16 04:58:00]: Unable to cast object of type 'System.UInt64' to type 'System.Int32'.
+poniedziałek, 16 grudnia 2019 05:08:50 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[12312], description=[], startDate=[2019-12-16 05:12:00]: Unable to cast object of type 'System.UInt64' to type 'System.UInt32'.
+poniedziałek, 16 grudnia 2019 05:18:57 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[t], description=[], startDate=[2019-12-16 05:20:00]: Could not find specified column in results: ConId
+poniedziałek, 16 grudnia 2019 05:22:11 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[t], description=[], startDate=[2019-12-16 05:30:00]: Unable to cast object of type 'System.Int64' to type 'System.Int32'.

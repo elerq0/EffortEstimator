@@ -1,0 +1,35 @@
+
+.nav-bar {
+  position: relative;
+  min-width: 100%;
+  min-height: 50px;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+
+.menu-button {
+  position: absolute;
+  display: block;
+  top: calc(50px * 0.1);
+  font-size: calc(50px * 0.4);
+}
+
+.log-in-out {
+  @extend .menu-button;
+  left: calc(100% - 100px);
+}
+
+.register {
+  @extend .menu-button;
+  left: calc(100% - 210px);
+}
+
+.home {
+  @extend .menu-button;
+  left: 5px;
+}
+
+.groups {
+  @extend .menu-button;
+  left: 105px;
+}
