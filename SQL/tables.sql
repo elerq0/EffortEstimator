@@ -47,3 +47,11 @@ create table Conferences(
     Con_StartDate datetime,
     Con_State int
 );
+
+create table Conferences_Results(
+	CRs_CRsId int auto_increment primary key,
+    CRs_ConId int,
+    CRs_ConState int,
+    CRS_UsrId int,
+    CRs_UsrResult double
+);

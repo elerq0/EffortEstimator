@@ -1,0 +1,45 @@
+.menu {
+  position: absolute;
+  width: 380px;
+  height: 400px;
+  top: calc(50% - 260px);
+  left: calc(50% - 170px);
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.shift {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.button {
+  position: absolute;
+  width: 340px;
+  display: block;
+  font-size: calc(50px * 0.4);
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.header {
+  position: absolute;
+  width: 340px;
+  font-size: calc(50px * 0.45);
+  color: white;
+}
+
+.delfic {
+  @extend .button;
+  top: 120px;
+}
+
+.cocomo {
+  @extend .button;
+  top: 220px;
+}
+
+.usecasepoints {
+  @extend .button;
+  top: 320px;
+}

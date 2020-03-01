@@ -1,0 +1,70 @@
+<div *ngIf="Part == 0" class="uc-actor-part">
+
+  <div class="usecase-part">
+    <div class="shift">
+      <p class="header">
+        Klasyfikacja przypadków użycia
+      </p>
+      <div class="parameter">
+        <span>{{Names[0]}}</span>
+        <input matInput [(ngModel)]="UCs[0]" class="input" />
+      </div>
+      <div class="parameter">
+        <span>{{Names[1]}}</span>
+        <input matInput [(ngModel)]="UCs[1]" class="input" />
+      </div>
+      <div class="parameter">
+        <span>{{Names[2]}}</span>
+        <input matInput [(ngModel)]="UCs[2]" class="input" />
+      </div>
+    </div>
+  </div>
+
+  <div class="actor-part">
+    <div class="shift">
+      <p class="header">
+        Klasyfikacja aktorów
+      </p>
+      <div class="parameter">
+        <span>{{Names[0]}}</span>
+        <input matInput [(ngModel)]="Actors[0]" class="input" />
+      </div>
+      <div class="parameter">
+        <span>{{Names[1]}}</span>
+        <input matInput [(ngModel)]="Actors[1]" class="input" />
+      </div>
+      <div class="parameter">
+        <span>{{Names[2]}}</span>
+        <input matInput [(ngModel)]="Actors[2]" class="input" />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="Part == 1" class="ECF-part">
+  <div class="shift">
+    <div *ngFor="let ECFName of ECFNames; index as i">
+        <span class="name">{{ECFNames[i]}}</span>
+        <mat-slider class="slider" [min]="0" [max]="5" [thumbLabel]="true" [(ngModel)]="ECFs[i]"></mat-slider>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="Part == 2" class="TCF-part">
+  <div class="shift">
+    <div *ngFor="let TCFName of TCFNames; index as i">
+      <span class="name">{{TCFNames[i]}}</span>
+      <mat-slider class="slider" [min]="0" [max]="5" [thumbLabel]="true" [(ngModel)]="TCFs[i]"></mat-slider>
+    </div>
+  </div>
+</div>
+
+<div class="result-part">
+  <span class="result-elem">
+    Wynik = {{CalculateValue().toFixed(2)}} osobogodzin
+  </span>
+</div>
+
+<button mat-button *ngIf="Part != 0" (click)="Part = Part - 1" class="prev-button">Cofnij</button>
+<button mat-button *ngIf="Part != 2" (click)="Part = Part + 1" class="next-button">Dalej</button>

@@ -1,20 +1,60 @@
-
-.error {
-  position: absolute;
-  left: 50px;
-  color: red;
-}
-
 .mat-button {
   width: 180px;
   font-size: 18px;
   border-color: dimgray;
+  color: white;
   background-color: rgba(128, 128, 128, 0.4);
+}
+
+::placeholder {
+  color: white;
+}
+
+::ng-deep .mat-form-field-label {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background-color: white !important;
+}
+
+.mat-table {
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.15);
+}
+
+.mat-paginator {
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+/deep/ .mat-paginator-icon {
+  fill: white !important;
+}
+
+/deep/ .mat-select-value-text {
+  color: white !important;
+}
+
+/deep/ .mat-select-arrow {
+  color: white !important;
 }
 
 .mat-menu-item {
   width: 180px;
   font-size: 18px;
+}
+
+.mat-cell {
+  color: white;
+}
+
+
+.error {
+  position: absolute;
+  left: 50px;
+  color: red;
 }
 
 .groups-list {
@@ -26,22 +66,28 @@
 .join-create-part {
   position: fixed;
   width: 320px;
-  height: 160px;
+  height: 180px;
   top: calc(50% - 50px);
   left: calc(50% - 160px);
   background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.shift {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  max-width: 280px;
 }
 
 .join-create-mat-form-field {
-  left: 20px;
   width: 280px;
 }
 
 .join-create-button {
   position: absolute;
   top: 60px;
-  left: 80px;
-  width: 160px;
+  left: calc(50% - 90px);
 }
 
 .join-create-error {
@@ -56,16 +102,6 @@
   top: 120px;
   left: 20px;
   color: white;
-}
-
-.group-part {
-  /*
-  width: 320px;
-  height: 160px;
-  top: calc(50% - 50px);
-  left: calc(50% - 160px);
-  background-color: rgba(128, 128, 128, 0.4);
-    */
 }
 
 .group-connect-button {
@@ -90,7 +126,7 @@
 .group-joining-output {
   position: absolute;
   font-size: 18px;
-  color: black;
+  color: white;
   top: 8px;
   left: 15px;
 }
@@ -118,14 +154,17 @@
 
 .date-column {
   width: 160px;
+  color: white;
 }
 
 .topic-column {
   width: 400px;
+  color: white;
 }
 
 .desc-column {
   width: calc(90% - 660px);
+  color: white;
 }
 
 .button-column {
@@ -133,20 +172,4 @@
   font-size: 10px;
   background-color: none;
   left: calc(100% - 50px);
-}
-
-.mat-table {
-  width: 100%;
-  background-color: rgba(128, 128, 128, 0.15);
-}
-
-.mat-paginator {
-  width: 100%;
-  background-color: rgba(128, 128, 128, 0.4);
-}
-
-.test {
-  position: relative;
-  left: 40px;
-  top: 50%;
 }

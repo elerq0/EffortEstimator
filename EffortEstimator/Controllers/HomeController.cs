@@ -33,7 +33,7 @@ namespace EffortEstimator.Controllers
         [Route("Home/Test3")]
         public IActionResult Test3()
         {
-            string email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value;
+            string email = User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value;
 
             return Ok(email);
         }

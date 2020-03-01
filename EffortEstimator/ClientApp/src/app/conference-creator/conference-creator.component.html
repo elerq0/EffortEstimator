@@ -1,17 +1,21 @@
 <div class="conference-part">
 
   <mat-form-field class="topic-field">
-    <input matInput [(ngModel)]="topic" placeholder="Topic" />
+    <input matInput [(ngModel)]="topic" placeholder="Temat" />
   </mat-form-field>
 
-  <textarea [(ngModel)]="description" class="description-field" placeholder="Description"></textarea>
+  <textarea [(ngModel)]="description" class="description-field" placeholder="Opis"></textarea>
 
   <mat-form-field class="date-field">
-    <input matInput type="datetime-local" [(ngModel)]="startDate" placeholder="Start date" />
+    <input matInput type="datetime-local" [(ngModel)]="startDate" placeholder="Data rozpoczęcia" />
   </mat-form-field>
 
-  <button mat-button routerLink="/groups" class="conference-cancel-button">Cancel</button>
-  <button mat-button (click)="planNewConference()" class="conference-confirm-button">Confirm</button>
+  <button mat-button routerLink="/groups" class="conference-cancel-button">Anuluj</button>
+  <button mat-button (click)="planNewConference()" class="conference-confirm-button">Potwierdź</button>
+
+  <input #file type="file" style="display: none" />
+  <button mat-button (click)="file.click()" class="conference-input-file">Załącz dokumentację</button>
+
 
   <div *ngIf="msg != ''" class="conference-error">
     {{msg}}

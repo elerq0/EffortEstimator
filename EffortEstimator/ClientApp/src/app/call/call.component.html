@@ -1,26 +1,58 @@
 <div [id]="localCallId"></div>
 <div *ngFor="let callId of remoteCalls" [id]="callId"></div>
 
-<div class="online-panel">
-  <span class="online-title">ONLINE</span>
-  <div class="online-users">
-    <div class="online-user" *ngFor="let user of users">
-      {{user}}
+<div *ngIf="Part == 0">
+
+  <div class="online-panel">
+    <span class="online-title">ONLINE</span>
+    <div class="online-users">
+      <div class="online-user" *ngFor="let user of users">
+        {{user}}
+      </div>
     </div>
   </div>
+
+  <div class="call-options-panel">
+
+    <img *ngIf="isMuted" class="mute-icon" src="assets/mic-mute-icon.jpg">
+
+    <button mat-button (click)="mute()" class="mute-button">Wycisz mikrofon</button>
+
+    <button mat-button (click)="disconnect()" class="dc-button">Rozłącz</button>
+
+    <button *ngIf="hasFile" mat-button (click)="downloadFile()" class="download-button">Pobierz dokumentację</button>
+
+  </div>
+
+  <div class="conference-functions-panel">
+
+    <button mat-button *ngIf="isConference" (click)="vote()" class="vote-button">Głosuj</button>
+
+    <button mat-button *ngIf="role == 'Owner' && isConference" (click)="incrementConferenceState()" class="next-part-button">Kolejna iteracja</button>
+
+    <button mat-button *ngIf="role == 'Owner' && isConference" (click)="finishConference()" class="finish-button">Zakończ</button>
+
+  </div>
+
 </div>
 
-<div class="call-panel">
+<div *ngIf="Part == 1 && isConference" class="estimation-form-part">
+  <div class="shift">
+    <h1 style="color: white">Temat: {{estimationForm.topic}}</h1>
+    <p></p>
+    <p style="color: white">Wartość twojego oszacowania: {{estimationForm.userResultValue}}</p>
+    <p style="color: white">Minimalne oszacowanie: {{estimationForm.minResultValue}}</p>
+    <p style="color: white">Maksymalne oszacowanie: {{estimationForm.maxResultValue}}</p>
+    <p style="color: white">Średnia wartość oszacowania: {{estimationForm.avgResultValue.toFixed(2)}}</p>
+    <p style="color: white">Proponowana wartość: {{estimationForm.proposedValue.toFixed(2)}}</p>
+    <p style="color: white">Liczba oszacowań: {{estimationForm.resultValues.length}}</p>
+    <p style="color: white">Wartości oszacowań członków zespołu: {{estimationForm.resultValues.toString().split(',').join(', ')}}</p>
 
-  <img *ngIf="isMuted" class="mute-icon" src="assets/mic-mute-icon.jpg">
+  </div>
 
-  <button mat-button (click)="mute()" class="mute-button">Mute</button>
-
-  <button mat-button (click)="disconnect()" class="dc-button">Disconnect</button>
+  
 </div>
 
-
-
-
-
-
+<button mat-button *ngIf="Part == 0 && isConference" (click)="Part = Part + 1; getEstimationForm()" class="prev-button">Formularz estymacji</button>
+<button mat-button *ngIf="Part == 1 && isConference" (click)="Part = Part - 1" class="next-button">Okno konferencji</button>
+<button mat-button *ngIf="Part == 1 && isConference" (click)="getEstimationForm()" class="refresh-button">Odśwież</button>

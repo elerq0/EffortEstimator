@@ -316,5 +316,111 @@ namespace EffortEstimator.Helpers
                 throw new Exception("There was an error, try again later!");
             }
         }
+
+        public bool VoteInConference(string email, string chaName, double result)
+        {
+            string resultString = resultString = result.ToString().Replace(',', '.');
+            string cmdString = "call VoteInConference ('" + email + "', '" + chaName + "', '" + resultString + "')";
+            try
+            {
+                using MySqlConnection cnn = GetConnection();
+                cnn.Open();
+                using MySqlCommand cmd = new MySqlCommand(cmdString, cnn);
+                cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "You do not have access to this!")
+                    throw new Exception(e.Message);
+
+                if (e.Message == "You cant vote yet!")
+                    throw new Exception(e.Message);
+
+                if (e.Message == "You have already voted!")
+                    throw new Exception(e.Message);
+
+                Logger.Log("MySQL-VoteInConference email=[" + email + "], chaName=[" + chaName + "], result=[" + resultString + "], cmd=[" + cmdString + "] : " + e.Message);
+                throw new Exception("There was an error, try again later!");
+            }
+            return true;
+        }
+
+        public List<ConferenceResult> GetConferenceResults(string chaName)
+        {
+            try
+            {
+                using MySqlConnection cnn = GetConnection();
+                cnn.Open();
+                using MySqlCommand cmd = new MySqlCommand("call GetCoferenceResults ('" + chaName + "')", cnn);
+                using var reader = cmd.ExecuteReader();
+
+                List<ConferenceResult> results = new List<ConferenceResult>();
+                while (reader.Read())
+                {
+                    results.Add(new ConferenceResult()
+                    {
+                        Email = reader["Usr_Email"].ToString(),
+                        Result = Double.Parse(reader["CRs_UsrResult"].ToString().Replace('.',','))
+                    });
+                }
+                return results;
+            }
+            catch (Exception e)
+            {
+                Logger.Log("MySQL-GetCoferenceResults chaName=[" + chaName + "]: " + e.Message);
+                throw new Exception("There was an error, try again later!");
+            }
+        }
+
+        public ConferenceInfo GetConferenceInfo(string chaName)
+        {
+            try
+            {
+                using MySqlConnection cnn = GetConnection();
+                cnn.Open();
+                using MySqlCommand cmd = new MySqlCommand("call GetCoferenceInfo ('" + chaName + "')", cnn);
+                using var reader = cmd.ExecuteReader();
+
+                ConferenceInfo info = new ConferenceInfo();
+
+                List<ConferenceResult> results = new List<ConferenceResult>();
+                while (reader.Read())
+                {
+                    info.Topic = reader["Con_Topic"].ToString();
+                    info.Description = reader["Con_Description"].ToString();
+                    info.State = (int)reader["Con_State"];
+                }
+                if (info.Topic != null)
+                    return info;
+                else
+                    throw new Exception("Not found!");
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "Not found!")
+                    throw new Exception(e.Message);
+
+                Logger.Log("MySQL-GetCoferenceInfo chaName=[" + chaName + "]: " + e.Message);
+                throw new Exception("There was an error, try again later!");
+            }
+        }
+
+        public bool SetConferenceState(string email, string chaName, int state)
+        {
+            try
+            {
+                using MySqlConnection cnn = GetConnection();
+                cnn.Open();
+                using MySqlCommand cmd = new MySqlCommand("call SetCoferenceState ('" + email + "', '" + chaName + "', " + state + ")", cnn);
+                cmd.ExecuteReader();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log("MySQL-SetCoferenceState chaName=[" + chaName + "], state=[" + state + "]: " + e.Message);
+                throw new Exception("There was an error, try again later!");
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace EffortEstimator.Controllers
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(IGroup.GetChannel(User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value, groupName, 0)));
+                return Ok(JsonConvert.SerializeObject(IGroup.GetChannel(User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value, groupName, 0)));
             }
             catch (Exception e)
             {

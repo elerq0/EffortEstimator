@@ -25,7 +25,7 @@ namespace EffortEstimator.Controllers
         {
             try
             {
-                return Ok(IGroup.CreateGroup(groupName, User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value));
+                return Ok(IGroup.CreateGroup(groupName, User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value));
             }
             catch (Exception e)
             {
@@ -39,7 +39,7 @@ namespace EffortEstimator.Controllers
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(IGroup.CreateJoiningKey(groupName, User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value)));
+                return Ok(JsonConvert.SerializeObject(IGroup.CreateJoiningKey(groupName, User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value)));
             }
             catch (Exception e)
             {
@@ -53,7 +53,7 @@ namespace EffortEstimator.Controllers
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(IGroup.JoinGroup(User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value, joiningKey)));
+                return Ok(JsonConvert.SerializeObject(IGroup.JoinGroup(User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value, joiningKey)));
             }
             catch (Exception e)
             {
@@ -67,7 +67,7 @@ namespace EffortEstimator.Controllers
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(IGroup.GetGroups(User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value)));
+                return Ok(JsonConvert.SerializeObject(IGroup.GetGroups(User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value)));
             }
             catch (Exception e)
             {

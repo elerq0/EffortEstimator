@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -15,6 +15,7 @@ export class ConferenceCreatorComponent implements OnInit {
     topic: string = '';
     description: string = '';
     startDate: string;
+    @ViewChild('file', { static: false }) fileInput: ElementRef;
     msg: string = '';
 
     constructor(@Inject('BASE_URL') _baseUrl: string, private router: Router, private httpClient: HttpClient) {
@@ -41,6 +42,10 @@ export class ConferenceCreatorComponent implements OnInit {
         formData.append('topic', this.topic);
         formData.append('description', this.description);
         formData.append('startDate', this.startDate);
+
+        var fileBrowser = this.fileInput.nativeElement;
+        if(fileBrowser.files && fileBrowser.files[0])
+            formData.append('file', fileBrowser.files[0]);
 
         const headers = new HttpHeaders({
             'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')

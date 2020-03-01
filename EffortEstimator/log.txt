@@ -9,3 +9,22 @@ poniedziałek, 16 grudnia 2019 04:56:56 - MySQL-CreateConference email=[elerq0@g
 poniedziałek, 16 grudnia 2019 05:08:50 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[12312], description=[], startDate=[2019-12-16 05:12:00]: Unable to cast object of type 'System.UInt64' to type 'System.UInt32'.
 poniedziałek, 16 grudnia 2019 05:18:57 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[t], description=[], startDate=[2019-12-16 05:20:00]: Could not find specified column in results: ConId
 poniedziałek, 16 grudnia 2019 05:22:11 - MySQL-CreateConference email=[elerq0@gmail.com], groupName=[testowa], topic=[t], description=[], startDate=[2019-12-16 05:30:00]: Unable to cast object of type 'System.Int64' to type 'System.Int32'.
+niedziela, 19 stycznia 2020 00:42:07 - MySQL-GetUser email=[elerq0@gmail.com]: Unable to connect to any of the specified MySQL hosts.
+niedziela, 19 stycznia 2020 00:42:53 - MySQL-GetUser email=[elerq0@gmail.com]: Unable to connect to any of the specified MySQL hosts.
+niedziela, 19 stycznia 2020 00:43:14 - MySQL-GetUser email=[elerq0@gmail.com]: Unable to connect to any of the specified MySQL hosts.
+niedziela, 19 stycznia 2020 20:30:02 - MySQL-VoteInConference email=[elerq0@gmail.com], chaName=[testowan6LDBVGLHS3J8], result=[20,2]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+niedziela, 19 stycznia 2020 20:44:02 - MySQL-VoteInConference email=[elerq0@gmail.com], chaName=[testowan6LDBVGLHS3J8], result=[20,2]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+niedziela, 19 stycznia 2020 20:47:25 - MySQL-VoteInConference email=[elerq0@gmail.com], chaName=[testowan6LDBVGLHS3J8], result=[20,2]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+niedziela, 19 stycznia 2020 20:52:00 - MySQL-VoteInConference email=[elerq0@gmail.com], chaName=[testowan6LDBVGLHS3J8], result=[20,2]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+niedziela, 19 stycznia 2020 20:55:01 - MySQL-VoteInConference email=[elerq0@gmail.com], chaName=[testowan6LDBVGLHS3J8], result=[20.2]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+niedziela, 19 stycznia 2020 21:01:37 - MySQL-VoteInConference email=[elerq0@gmail.com], chaName=[testowan6LDBVGLHS3J8], result=[20.2], cmd=[call VoteInConference ('elerq0@gmail.com', 'testowan6LDBVGLHS3J8', '20.2'] : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+poniedziałek, 20 stycznia 2020 00:36:02 - MySQL-GetCoferenceInfo chaName=[]: Not found!
+poniedziałek, 20 stycznia 2020 00:38:39 - MySQL-GetCoferenceInfo chaName=[]: Not found!
+poniedziałek, 20 stycznia 2020 04:00:45 - MySQL-GetCoferenceInfo chaName=[]: Not found!
+poniedziałek, 20 stycznia 2020 20:05:47 - MySQL-GetCoferenceInfo chaName=[testowaPJBKZ9QGWVJWI]: Not found!
+poniedziałek, 20 stycznia 2020 20:06:03 - MySQL-GetCoferenceInfo chaName=[testowaPJBKZ9QGWVJWI]: Not found!
+poniedziałek, 20 stycznia 2020 20:06:45 - MySQL-GetCoferenceInfo chaName=[12345XOPIOJLOSGRVP2H]: Not found!
+poniedziałek, 20 stycznia 2020 20:10:08 - MySQL-GetCoferenceInfo chaName=[12345XOPIOJLOSGRVP2H]: Not found!
+czwartek, 23 stycznia 2020 02:51:29 - MySQL-GetChannelName email=[elerq0@gmail.com], groupName=[Grupa testowa], conferenceId=[47]: Channel not found!
+czwartek, 23 stycznia 2020 02:51:37 - MySQL-GetChannelName email=[elerq0@gmail.com], groupName=[Grupa testowa], conferenceId=[47]: Channel not found!
+czwartek, 23 stycznia 2020 02:51:56 - MySQL-GetChannelName email=[elerq0@gmail.com], groupName=[Grupa testowa], conferenceId=[47]: Channel not found!

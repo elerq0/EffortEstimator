@@ -65,7 +65,7 @@ namespace EffortEstimator.Controllers
         [Route("User/GetCurrent")]
         public IActionResult GetCurrentUser()
         {
-            return Ok(User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value);
+            return Ok(User.Claims.Where(x => x.Type == ClaimTypes.Email).Single().Value);
         }
 
 

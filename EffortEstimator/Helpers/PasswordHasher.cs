@@ -10,20 +10,20 @@ namespace EffortEstimator.Helpers
         private const int KeySize = 32; // 256 bit
         private const int Iterations = 10000;
 
-        public string Hash(string password)
-        {
-            using (var algorithm = new Rfc2898DeriveBytes(
-              password,
-              SaltSize,
-              Iterations,
-              HashAlgorithmName.SHA512))
-            {
-                var key = Convert.ToBase64String(algorithm.GetBytes(KeySize));
-                var salt = Convert.ToBase64String(algorithm.Salt);
+public string Hash(string password)
+{
+    using (var algorithm = new Rfc2898DeriveBytes(
+        password,
+        SaltSize,
+        Iterations,
+        HashAlgorithmName.SHA512))
+    {
+        var key = Convert.ToBase64String(algorithm.GetBytes(KeySize));
+        var salt = Convert.ToBase64String(algorithm.Salt);
 
-                return $"{Iterations}.{salt}.{key}";
-            }
-        }
+        return $"{Iterations}.{salt}.{key}";
+    }
+}
 
         public (bool Verified, bool NeedsUpgrade) Check(string hash, string password)
         {

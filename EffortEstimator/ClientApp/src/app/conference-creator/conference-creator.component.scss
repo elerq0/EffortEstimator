@@ -1,3 +1,23 @@
+.mat-button {
+  width: 200px;
+  font-size: 18px;
+  border-color: dimgray;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+::placeholder {
+  color: white;
+}
+
+::ng-deep .mat-form-field-label {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background-color: white !important;
+}
+
 .conference-part {
   position: absolute;
   width: 700px;
@@ -13,6 +33,7 @@
   left: 50px;
   width: 600px;
   font-size: 18px;
+  color: white;
 }
 
 .description-field {
@@ -23,6 +44,7 @@
   height: 100px;
   background-color: rgba(128, 128, 128, 0.2);
   border-color: rgba(128, 128, 128, 0);
+  color: white;
 }
 
 .date-field {
@@ -30,19 +52,24 @@
   top: 200px;
   width: 180px;
   left: calc(50% + 120px);
+  color: white;
+}
+
+.conference-input-file{
+  position: absolute;
+  top: 215px;
+  left: 50px;
 }
 
 .conference-cancel-button {
   position: absolute;
   top: 280px;
-  width: 140px;
   left: calc(50% - 40px - 140px);
 }
 
 .conference-confirm-button {
   position: absolute;
   top: 280px;
-  width: 140px;
   left: calc(50% + 40px);
 }
 

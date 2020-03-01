@@ -53,7 +53,7 @@ export class GroupPanelComponent implements OnInit {
 
         this.httpClient.get(url, { headers }).subscribe(
             (res: any[]) => {
-                this.groups.push(new GroupEntity('New', 'api'));
+                this.groups.push(new GroupEntity('Nowa', 'api'));
                 res.forEach(group => {
                     this.groups.push(new GroupEntity(group.Name, group.Role));
                 })
@@ -188,6 +188,7 @@ export class GroupPanelComponent implements OnInit {
         this.httpClient.get(url, { headers }).subscribe(
             (res: string) => {
                 sessionStorage.setItem('EE-channel-name', res);
+                sessionStorage.setItem('EE-group-role', this.actualGroup.role);
             },
             (err) => {
                 if (err.status == 401) {

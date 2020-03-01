@@ -6,6 +6,13 @@
   background-color: rgba(128, 128, 128, 0.4);
 }
 
+.mat-button {
+  width: 150px;
+  font-size: 18px;
+  border-color: dimgray;
+  color: white;
+}
+
 
 .menu-button {
   position: absolute;
@@ -16,20 +23,22 @@
 
 .log-in-out {
   @extend .menu-button;
-  left: calc(100% - 100px);
+  left: calc(100% - 150px);
 }
 
 .register {
   @extend .menu-button;
-  left: calc(100% - 210px);
+  left: calc(100% - 310px);
 }
 
 .home {
   @extend .menu-button;
+  width: 100px;
   left: 5px;
 }
 
 .groups {
   @extend .menu-button;
-  left: 105px;
+  width: 100px;
+  left: 110px;
 }

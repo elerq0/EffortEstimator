@@ -35,11 +35,13 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\objects\conference-entity.ts" />
+    <None Remove="ClientApp\src\app\objects\estimation-form.ts" />
     <None Remove="ClientApp\src\app\objects\group-entity.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\objects\conference-entity.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\objects\estimation-form.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\objects\group-entity.ts" />
   </ItemGroup>
 

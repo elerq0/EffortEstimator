@@ -1,20 +1,32 @@
 .error {
   position: relative;
-  left: 50px;
   color: red;
 }
 
 .mat-form-field {
-  left: 50px;
-  width: 250px;
+  width: 310px;
   color: white;
 }
 
 .mat-button {
-  left: 200px;
-  width: 80px;
+  width: 200px;
   font-size: 18px;
   border-color: dimgray;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.4);
+  left: calc(100% - 200px);
+}
+
+::placeholder {
+  color: white;
+}
+
+::ng-deep .mat-form-field-label {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background-color: white !important;
 }
 
 .register-box {
@@ -22,6 +34,13 @@
   top: calc(85% - 480px);
   left: calc(45% - 350px);
   width: 350px;
-  height: 490px;
+  height: 520px;
   background-color: rgba(128, 128, 128, 0.4);
+}
+
+.shift {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  max-width: 310px;
 }

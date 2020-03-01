@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
                     this.msg = err.error;
             },
             () => {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/']);
             }
         );
     }

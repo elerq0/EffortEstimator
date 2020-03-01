@@ -1,0 +1,126 @@
+.uc-actor-part {
+  position: sticky;
+  width: 360px;
+  height: 20px;
+  left: calc(50% - 180px);
+  top: calc(50% - 230px);
+}
+
+.usecase-part {
+  position: absolute;
+  width: 360px;
+  height: 220px;
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.actor-part {
+  position: absolute;
+  top: 240px;
+  width: 360px;
+  height: 220px;
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.ECF-part {
+  position: sticky;
+  width: 360px;
+  height: 400px;
+  left: calc(50% - 180px);
+  top: calc(50% - 200px);
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.TCF-part {
+  position: sticky;
+  width: 360px;
+  height: 640px;
+  left: calc(50% - 180px);
+  top: calc(50% - 320px);
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.shift {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.header {
+  height: 35px;
+  font-size: 22px;
+}
+
+.parameter {
+  width: 320px;
+  height: 35px;
+  font-size: 20px;
+}
+
+.input {
+  position: absolute;
+  left: calc(100% - 80px);
+  width: 50px;
+  height: 30px;
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.name {
+  position: absolute;
+}
+
+.slider {
+  width: 320px;
+}
+
+
+.prev-button {
+  position: absolute;
+  top: calc(50% - 20px);
+  width: 140px;
+  left: 50px;
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.next-button {
+  position: absolute;
+  top: calc(50% - 20px);
+  width: 140px;
+  left: calc(100% - 140px - 50px);
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.result-part {
+  position: absolute;
+  width: 250px;
+  height: 70px;
+  left: calc(50% + 260px);
+  top: 80px;
+  background-color: rgba(128, 128, 128, 0.4);
+  color: white;
+}
+
+.result-elem {
+  position: absolute;
+  width: 200px;
+  left: 25px;
+  top: 10px;
+}
+
+::placeholder {
+  color: white;
+}
+
+::ng-deep .mat-form-field-label {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background-color: white !important;
+}

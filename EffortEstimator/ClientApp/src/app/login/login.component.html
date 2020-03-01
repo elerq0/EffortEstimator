@@ -1,37 +1,38 @@
 <div class="login-box">
+  <div class="shift">
+    <div *ngIf="!needAccountActivation">
+      <mat-form-field>
+        <input matInput [(ngModel)]="email" placeholder="Email" />
+      </mat-form-field>
+      <p></p>
 
-  <div *ngIf="!needAccountActivation">
-    <mat-form-field>
-      <input matInput [(ngModel)]="email" placeholder="Email"/>
-    </mat-form-field>
-    <p></p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="password" name="password" placeholder="Hasło" [type]="hidePassword ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <p></p>
 
-    <mat-form-field>
-      <input matInput [(ngModel)]="password" name="password" placeholder="Password" [type]="hidePassword ? 'password' : 'text'" />
-      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-    <p></p>
-
-    <button mat-button (click)="Login()">Login</button>
-    <p></p>
-    <div *ngIf="msg != ''" class="error">{{msg}}</div>
+      <button mat-button (click)="Login()">Login</button>
+      <p></p>
+      <div *ngIf="msg != ''" class="error">{{msg}}</div>
 
 
-  </div>
+    </div>
 
-  <div *ngIf="needAccountActivation">
-    <p></p>
-    <p>Please insert the activation key we send You at your email address!</p>
-    <mat-form-field>
-      <input matInput [(ngModel)]="activationKey" placeholder="Activation Key" />
-    </mat-form-field>
-    <p></p>
+    <div *ngIf="needAccountActivation">
+      <p></p>
+      <span style="color: white">Wprowadź klucz aktywacyjny, który został wysłany na Twoj adres email!</span>
+      <mat-form-field>
+        <input matInput [(ngModel)]="activationKey" placeholder="Klucz aktywacyjny" />
+      </mat-form-field>
+      <p></p>
 
-    <button mat-button (click)="ActivateAccount()">Activate</button>
-    <p></p>
-    <div *ngIf="msg != ''" class="error">{{msg}}</div>
+      <button mat-button (click)="ActivateAccount()">Aktywacja</button>
+      <p></p>
+      <div *ngIf="msg != ''" class="error">{{msg}}</div>
 
+    </div>
   </div>
 </div>

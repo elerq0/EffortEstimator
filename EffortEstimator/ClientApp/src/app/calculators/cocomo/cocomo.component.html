@@ -1,0 +1,52 @@
+<div class="size-part">
+  <mat-form-field class="size-elem">
+    <input matInput [(ngModel)]="Size" placeholder="Rozmiar w KLOC" />
+  </mat-form-field>
+</div>
+<div class="result-part">
+  <span class="result-elem">
+    Wynik = {{CalculateValue().toFixed(2)}} osobomiesięcy
+  </span>
+</div>
+
+<div *ngIf="Part == 0" class="SF-part">
+  <div class="shift">
+    <div *ngFor="let SFName of SFNames; index as i">
+      <span class="name">{{SFNames[i]}}</span>
+      <mat-slider class="slider" [min]="SFMins[i]" [max]="SFMaxs[i]" [(ngModel)]="SFi[i]"></mat-slider>
+      <span class="level">{{Levels[SFi[i]]}}</span>
+    </div>
+  </div>
+
+  <div class="checkbox">
+    <mat-checkbox [(ngModel)]="SimpleProject">Projekt prosty </mat-checkbox>
+  </div>
+
+</div>
+
+<div *ngIf="Part == 1">
+
+  <div class="EM-partone">
+    <div class="shift">
+      <div *ngFor="let iterator of [0,1,2,3,4,5,6,7]; index as i">
+        <span class="name">{{EMNames[iterator]}}</span>
+        <mat-slider class="slider" [min]="EMMins[iterator]" [max]="EMMaxs[iterator]" [(ngModel)]="EMi[iterator]"></mat-slider>
+        <span class="level">{{Levels[EMi[iterator]]}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="EM-parttwo">
+    <div class="shift">
+      <div *ngFor="let iterator of [8,9,10,11,12,13,14,15,16]; index as i">
+        <span class="name">{{EMNames[iterator]}}</span>
+        <mat-slider class="slider" [min]="EMMins[iterator]" [max]="EMMaxs[iterator]" [(ngModel)]="EMi[iterator]"></mat-slider>
+        <span class="level">{{Levels[EMi[iterator]]}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<button mat-button *ngIf="Part == 1" (click)="Part = Part - 1" class="prev-button">Cofnij</button>
+<button mat-button *ngIf="Part == 0 && !SimpleProject" (click)="Part = Part + 1" class="next-button">Dalej</button>

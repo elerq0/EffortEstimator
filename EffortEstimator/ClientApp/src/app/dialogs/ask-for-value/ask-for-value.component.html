@@ -1,0 +1,13 @@
+<div mat-dialog-content align="center">
+  {{message}}
+  <p></p>
+  <mat-form-field>
+    <label>
+      <input matInput [(ngModel)]="value">
+    </label>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button (click)="onYesClick(value)">Zatwierdź</button>
+</div>

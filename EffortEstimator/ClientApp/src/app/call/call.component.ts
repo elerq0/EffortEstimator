@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxAgoraService, AgoraClient, Stream, ClientEvent, StreamEvent } from 'ngx-agora';
+import { HttpClient, HttpHeaders, HttpEvent, HttpResponse, HttpEventType } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AskForValueComponent } from '../dialogs/ask-for-value/ask-for-value.component';
+import { MatDialog } from '@angular/material';
+import { InfoComponent } from '../dialogs/info/info.component';
+import { EstimationForm } from '../objects/estimation-form'
 
 @Component({
     selector: 'app-call',
@@ -9,6 +15,8 @@ import { NgxAgoraService, AgoraClient, Stream, ClientEvent, StreamEvent } from '
 })
 export class CallComponent implements OnInit {
 
+    private baseUrl: string;
+
     localCallId = 'agora_local';
     remoteCalls: string[] = [];
     users: string[] = [];
@@ -16,20 +24,30 @@ export class CallComponent implements OnInit {
     private client: AgoraClient;
     private localStream: Stream;
     private uid: string;
+    private Part: number = 0;
 
     private isMuted: boolean = false;
+    private hasFile: boolean = false;
+    private isConference: boolean = true;
+    private fileName: string = '';
+    private estimationForm: EstimationForm;
 
-    constructor(private ngxAgoraService: NgxAgoraService, private router: Router) {
+    constructor(@Inject('BASE_URL') _baseUrl: string, public dialog: MatDialog, private ngxAgoraService: NgxAgoraService, private router: Router, private httpClient: HttpClient) {
         this.uid = sessionStorage.getItem('EE-email');
+        this.baseUrl = _baseUrl;
         //this.ngxAgoraService.AgoraRTC.Logger.setLogLevel(this.ngxAgoraService.AgoraRTC.Logger.NONE);
     }
 
     channel: string;
+    role: string;
 
     ngOnInit() {
         if (sessionStorage.getItem('EE-channel-name')) {
             this.channel = sessionStorage.getItem('EE-channel-name');
             sessionStorage.removeItem('EE-channel-name');
+
+            this.role = sessionStorage.getItem('EE-group-role');
+            sessionStorage.removeItem('EE-group-role');
 
             this.client = this.ngxAgoraService.createClient({ mode: 'rtc', codec: 'h264' });
 
@@ -39,8 +57,12 @@ export class CallComponent implements OnInit {
             this.assignLocalStreamHandlers();
 
             this.initLocalStream();
+
+            this.checkIfHasFile();
+            this.getEstimationForm();
+            
         } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
         }
     }
 
@@ -50,6 +72,174 @@ export class CallComponent implements OnInit {
         if (this.client != undefined)
             this.client.leave();
     }
+
+    checkIfHasFile() {
+        let url = this.baseUrl + 'Conference/CheckFile/' + this.channel;
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')
+        })
+
+        this.httpClient.get(url, { headers }).subscribe(
+            (res: any) => {
+                this.hasFile = res.item1;
+                this.fileName = res.item2;
+            },
+            (err) => {
+                if (err.status == 401) {
+                    sessionStorage.clear();
+                    this.router.navigate(['']);
+                }
+            });
+    }
+
+    downloadFile() {
+        let url = this.baseUrl + 'Conference/GetFile/' + this.channel;
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')
+        })
+
+        this.httpClient.get(url, {
+            headers, responseType: 'blob',
+            observe: 'response'
+        }).subscribe(
+            data => {
+                const downloadedFile = new Blob([data.body], { type: data.body.type });
+                const a = document.createElement('a');
+                a.setAttribute('style', 'display:none;');
+                document.body.appendChild(a);
+                a.download = this.fileName;
+                a.href = URL.createObjectURL(downloadedFile);
+                a.target = '_blank';
+                a.click();
+                document.body.removeChild(a);
+            }
+        );
+    }
+
+    async vote() {
+        let result: number;
+        const dialogRef = this.dialog.open(AskForValueComponent, {
+            data: 'Podaj wybraną przez Ciebie wartość pracochłonności dla tego projektu'
+        });
+
+        dialogRef.afterClosed().subscribe(
+            voteResult => {
+                result = voteResult;
+            },
+            () => {
+            },
+            async () => {
+                if (result != null) {
+                    let url = this.baseUrl + 'Conference/Vote'
+
+                    const formData = new FormData();
+                    formData.append('chaName', this.channel);
+                    formData.append('result', result.toString());
+
+                    const headers = new HttpHeaders({
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')
+                    })
+
+                    this.httpClient.post(url, formData, { headers }).subscribe(
+                        () => { },
+                        (err) => {
+                            if (err.status == 401) {
+                                sessionStorage.clear();
+                                this.router.navigate(['']);
+                            }
+                            else
+                                this.dialog.open(InfoComponent, {
+                                    data: err.error
+                                });
+                        }
+                    );
+                }
+            });
+    }
+
+    getEstimationForm() {
+        let url = this.baseUrl + 'Conference/GetEstimationForm/' + this.channel;
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')
+        })
+
+        this.httpClient.get(url, { headers }).subscribe(
+            (res: EstimationForm) => {
+                this.estimationForm = res;
+            },
+            (err) => {
+                if (err.error == 'Not found!') {
+                    this.isConference = false;
+                }
+                else
+                this.dialog.open(InfoComponent, {
+                    data: err.error
+                }); },
+            () => {}
+        );
+    }
+
+    incrementConferenceState() {
+        let url = this.baseUrl + 'Conference/Increment'
+
+        const formData = new FormData();
+        formData.append('channelName', this.channel);
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')
+        })
+
+        this.httpClient.post(url, formData, { headers }).subscribe(
+            () => {},
+            (err) => {
+                if (err.status == 401) {
+                    sessionStorage.clear();
+                    this.router.navigate(['']);
+                }
+                else
+                    this.dialog.open(InfoComponent, {
+                        data: err.error
+                    });
+            },
+            () => {
+                this.dialog.open(InfoComponent, {
+                    data: 'Rozpoczęto kolejną iterację'
+                });
+            }
+        );
+    }
+
+    finishConference() {
+        let url = this.baseUrl + 'Conference/Finish'
+
+        const formData = new FormData();
+        formData.append('channelName', this.channel);
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + sessionStorage.getItem('EE-token')
+        })
+
+        this.httpClient.post(url, formData, { headers }).subscribe(
+            () => { },
+            (err) => {
+                if (err.status == 401) {
+                    sessionStorage.clear();
+                    this.router.navigate(['']);
+                }
+                else
+                    this.dialog.open(InfoComponent, {
+                        data: err.error
+                    });
+            },
+            () => {
+                this.router.navigate(['/groups'])
+            }
+        );
+    }
+
 
     private assignClientHandlers(): void {
         this.client.on(ClientEvent.LocalStreamPublished, evt => { console.log('Publish local stream successfully'); });
@@ -138,7 +328,7 @@ export class CallComponent implements OnInit {
             this.client.leave();
             this.localStream.close();
         } finally {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
         }
     }
 }

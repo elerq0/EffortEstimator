@@ -28,7 +28,7 @@ namespace EffortEstimator.Services
             if (string.IsNullOrWhiteSpace(email))
                 throw new Exception("Email is required");
 
-            if (email.Length > 300)
+            if (email.Length >= 300)
                 throw new Exception("Email is too long!");
 
             if (string.IsNullOrWhiteSpace(password))
@@ -45,6 +45,8 @@ namespace EffortEstimator.Services
 
             if (!user.Active)
                 throw new Exception("User is not activated!");
+
+            // Weryfikacja danych
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
